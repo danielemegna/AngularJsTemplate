@@ -10,7 +10,7 @@
 'use strict';
 
 // that array lists the modules that phonecatApp depends on
-var phonecatApp = angular.module('phonecatApp', ['ngRoute', 'phonecatControllers', 'phonecatFilters']);
+var phonecatApp = angular.module('phonecatApp', ['ngRoute', 'phonecatControllers', 'phonecatFilters', 'phonecatServices']);
 
 // with config() method, we request the $routeProvider to be injected into our config function
 phonecatApp.config(function($routeProvider) {

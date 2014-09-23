@@ -14,27 +14,22 @@
 var phonecatControllers = angular.module('phonecatControllers', []);
 
 // declare a controller and registered it in an AngularJS module
-phonecatControllers.controller('PhoneListCtrl', function($scope, $http) {
+phonecatControllers.controller('PhoneListCtrl', function($scope, Phone) {
 
-  $http.get('database/phones.json').success(function(data) {
-    $scope.phones = data;
-  });
-  
+  $scope.phones = Phone.query();
   $scope.orderProp = 'age';
   
 });
 
 // declare another controller and registered it in an AngularJS module
-phonecatControllers.controller('PhoneDetailCtrl', function($scope, $routeParams, $http) {
+phonecatControllers.controller('PhoneDetailCtrl', function($scope, $routeParams, Phone) {
 
-  $http.get('database/phones/' + $routeParams.phoneId + '.json').success(function(data) {
-    $scope.phone = data;
-    $scope.mainImageUrl = data.images[0];
-    
-    $scope.setImage = function(imageUrl) {
+  $scope.phone = Phone.get({ phoneId: $routeParams.phoneId}, function(phone) {
+    $scope.mainImageUrl = phone.images[0];
+  });
+  
+  $scope.setImage = function(imageUrl) {
       $scope.mainImageUrl = imageUrl;
     };
-    
-  });
   
 });
