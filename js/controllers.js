@@ -33,3 +33,13 @@ phonecatControllers.controller('PhoneDetailCtrl', function($scope, $routeParams,
     };
   
 });
+
+phonecatControllers.controller('LoginCtrl', function($scope) {
+  
+  $scope.performLogin = function() {
+    var username = $scope.txtUsername;
+    var password = $scope.txtPassword;
+    
+  };
+  
+});

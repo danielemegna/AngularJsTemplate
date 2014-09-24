@@ -16,19 +16,29 @@ var phonecatApp = angular.module('phonecatApp', ['ngRoute', 'phonecatControllers
 phonecatApp.config(function($routeProvider, $locationProvider) {
 
   $routeProvider.
+    when('/login', {
+      templateUrl: 'login.html',
+      controller: 'LoginCtrl'
+    }).
     when('/phones', {
       templateUrl: 'phone-list.html',
-      controller: 'PhoneListCtrl'
+      controller: 'PhoneListCtrl',
+      resolve: {
+        test: function($q){
+          return $q.defer();
+          //return $q.reject();
+        }
+      }
     }).
     when('/phones/:phoneId', { // all variables defined with the : notation are extracted into the $routeParams object.
       templateUrl: 'phone-detail.html',
       controller: 'PhoneDetailCtrl'
     }).
     otherwise({
-      redirectTo: '/phones'
+      redirectTo: '/login'
     });
     
   // use the HTML5 History API
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
     
 });
