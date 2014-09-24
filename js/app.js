@@ -13,7 +13,7 @@
 var phonecatApp = angular.module('phonecatApp', ['ngRoute', 'phonecatControllers', 'phonecatFilters', 'phonecatServices']);
 
 // with config() method, we request the $routeProvider to be injected into our config function
-phonecatApp.config(function($routeProvider) {
+phonecatApp.config(function($routeProvider, $locationProvider) {
 
   $routeProvider.
     when('/phones', {
@@ -27,5 +27,8 @@ phonecatApp.config(function($routeProvider) {
     otherwise({
       redirectTo: '/phones'
     });
+    
+  // use the HTML5 History API
+  $locationProvider.html5Mode(true);
     
 });
